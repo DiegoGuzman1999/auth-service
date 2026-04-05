@@ -1,7 +1,12 @@
 from fastapi import FastAPI
+from app.zone.settings import settings
 
-app = FastAPI(title="auth-service") 
+app = FastAPI(title=settings.app_name)
 
 @app.get("/health")
 def health():
-    return {"service": "auth-service", "status": "ok"}
+    return {
+        "service": settings.app_name,
+        "env": settings.app_env,
+        "status": "ok"
+    }
